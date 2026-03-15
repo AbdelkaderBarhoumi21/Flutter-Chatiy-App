@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart' show immutable;
 
 @immutable
-class MessageData {
-  const MessageData({
+class MessageModel {
+  const MessageModel({
     required this.senderName,
     required this.message,
     required this.messageDate,
