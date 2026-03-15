@@ -10,19 +10,18 @@ class CustomMessageTile extends StatelessWidget {
   final MessageModel messageData;
 
   @override
-  Widget build(BuildContext context) => Row(
-    children: [
-      Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Avatar.medium(url: messageData.profilePicture),
-      ),
-      Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: Text(
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    child: Row(
+      children: [
+        Avatar.medium(url: messageData.profilePicture),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: .start,
+            mainAxisAlignment: .center,
+            children: [
+              Text(
                 messageData.senderName,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
@@ -31,31 +30,24 @@ class CustomMessageTile extends StatelessWidget {
                   fontWeight: FontWeight.w900,
                 ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-              child: Text(
+              const SizedBox(height: 4),
+              Text(
                 messageData.message,
+                overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   fontSize: 12,
                   color: AppColors.textFaded,
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-
-      Padding(
-        padding: const EdgeInsets.only(right: 20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        const SizedBox(width: 10),
+        Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            const SizedBox(height: 4),
             Text(
               messageData.dateMessage.toUpperCase(),
-              overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 fontSize: 11,
                 letterSpacing: -0.2,
@@ -67,20 +59,19 @@ class CustomMessageTile extends StatelessWidget {
             Container(
               width: 18,
               height: 18,
+              alignment: Alignment.center,
               decoration: const BoxDecoration(
                 color: AppColors.secondary,
                 shape: BoxShape.circle,
               ),
-              child: const Center(
-                child: Text(
-                  '1',
-                  style: TextStyle(fontSize: 10, color: AppColors.textLigth),
-                ),
+              child: const Text(
+                '1',
+                style: TextStyle(fontSize: 10, color: AppColors.textLigth),
               ),
             ),
           ],
         ),
-      ),
-    ],
+      ],
+    ),
   );
 }
