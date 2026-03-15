@@ -1,8 +1,8 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_chatiy_app/data/models/stories/stories_model.dart';
 import 'package:flutter_chatiy_app/core/themes/theme.dart';
 import 'package:flutter_chatiy_app/core/utils/helpers/app_helpers.dart';
+import 'package:flutter_chatiy_app/data/models/stories/stories_model.dart';
 import 'package:flutter_chatiy_app/features/messages/widgets/custom_stories_card.dart';
 
 class CustomStories extends StatelessWidget {

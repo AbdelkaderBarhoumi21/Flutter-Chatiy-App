@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chatiy_app/features/calls/pages/call_page.dart';
-import 'package:flutter_chatiy_app/features/contacts/pages/contacts_page.dart';
-import 'package:flutter_chatiy_app/features/messages/pages/message_page.dart';
-import 'package:flutter_chatiy_app/features/notifications/pages/notifications_page.dart';
 import 'package:flutter_chatiy_app/core/utils/helpers/app_helpers.dart';
 import 'package:flutter_chatiy_app/core/widgets/avatar/avatar.dart';
 import 'package:flutter_chatiy_app/core/widgets/buttons/custom_icon_buttons.dart';
+import 'package:flutter_chatiy_app/features/calls/pages/call_page.dart';
+import 'package:flutter_chatiy_app/features/contacts/pages/contacts_page.dart';
+import 'package:flutter_chatiy_app/features/messages/pages/message_page.dart';
 import 'package:flutter_chatiy_app/features/navigation_menu/widgets/custom_navigation_bar_view.dart';
+import 'package:flutter_chatiy_app/features/notifications/pages/notifications_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

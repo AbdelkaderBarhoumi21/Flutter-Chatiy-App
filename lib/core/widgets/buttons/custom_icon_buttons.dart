@@ -3,9 +3,9 @@ import 'package:flutter_chatiy_app/core/themes/theme.dart';
 
 class IconBackgroundButtons extends StatelessWidget {
   const IconBackgroundButtons({
-    super.key,
     required this.icon,
     required this.onTap,
+    super.key,
   });
 
   final IconData icon;
@@ -28,7 +28,7 @@ class IconBackgroundButtons extends StatelessWidget {
 }
 
 class IconBorderButtons extends StatelessWidget {
-  const IconBorderButtons({super.key, required this.icon, required this.onTap});
+  const IconBorderButtons({required this.icon, required this.onTap, super.key});
 
   final IconData icon;
   final VoidCallback onTap;

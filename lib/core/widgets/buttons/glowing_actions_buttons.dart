@@ -16,13 +16,13 @@ class GlowingActionButton extends StatelessWidget {
   final VoidCallback onPressed;
 
   @override
-  Widget build(BuildContext context) => Container(
+  Widget build(BuildContext context) => DecoratedBox(
     decoration: BoxDecoration(
       color: color,
       shape: BoxShape.circle,
       boxShadow: [
         BoxShadow(
-          color: color.withOpacity(0.1),
+          color: color.withValues(alpha: 0.1),
           spreadRadius: 8,
           blurRadius: 24,
         ),
