@@ -45,7 +45,6 @@ linter:
     avoid_init_to_null: true
     avoid_js_rounded_ints: true
     avoid_multiple_declarations_per_line: true
-    avoid_null_checks_in_equality_operators: true
     avoid_positional_boolean_parameters: true
     avoid_print: true
     avoid_private_typedef_functions: true
@@ -116,7 +115,6 @@ linter:
     use_colored_box: true
     use_decorated_box: true
     use_full_hex_values_for_flutter_colors: true
-    use_if_null_to_convert_nulls_to_bools: true
     use_named_constants: true
     use_raw_strings: true
     use_string_buffers: true
@@ -137,7 +135,6 @@ linter:
     null_closures: true
     only_throw_errors: true
     overridden_fields: true
-    package_api_docs: false
     prefer_asserts_in_initializer_lists: true
     prefer_asserts_with_message: true
     prefer_expression_function_bodies: true
