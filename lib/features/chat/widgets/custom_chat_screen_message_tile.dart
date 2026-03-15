@@ -22,9 +22,9 @@ class CustomChatScreenMessageTile extends StatelessWidget {
           crossAxisAlignment: .start,
           children: [
             DecoratedBox(
-              decoration: const BoxDecoration(
-                color: Colors.grey,
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                color: Theme.of(context).cardColor,
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(borderRadius),
                   topRight: Radius.circular(borderRadius),
                   bottomRight: Radius.circular(borderRadius),
