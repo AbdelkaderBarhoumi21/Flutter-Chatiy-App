@@ -3,7 +3,10 @@ import 'package:flutter_chatiy_app/pages/call_page.dart';
 import 'package:flutter_chatiy_app/pages/contacts_page.dart';
 import 'package:flutter_chatiy_app/pages/message_page.dart';
 import 'package:flutter_chatiy_app/pages/notifications_page.dart';
+import 'package:flutter_chatiy_app/utils/app_helpers.dart';
+import 'package:flutter_chatiy_app/widgets/avatar.dart';
 import 'package:flutter_chatiy_app/widgets/custom_icon_buttons.dart';
+import 'package:flutter_chatiy_app/widgets/custom_navigation_bar_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -57,10 +60,27 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
 
       actions: [
-        Padding(padding: const EdgeInsets.only(
-          right: 24.0
-        ))
+        Padding(
+          padding: const EdgeInsets.only(right: 24.0),
+          child: Hero(
+            tag: 'picture',
+            child: Avatar.small(
+              url: AppHelpers.randomPictureUrl(),
+              onTap: () {
+                // Todo Profile
+              },
+            ),
+          ),
+        ),
       ],
+    ),
+
+    body: ValueListenableBuilder(
+      valueListenable: pageIndex,
+      builder: (context, value, child) => _pages[value],
+    ),
+    bottomNavigationBar: CustomNavigationBarView(
+      onItemSelected: _onNavigationItemSelected,
     ),
   );
 }
