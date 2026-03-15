@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chatiy_app/core/extension/app_route_extension.dart';
 import 'package:flutter_chatiy_app/core/widgets/buttons/custom_icon_buttons.dart';
 import 'package:flutter_chatiy_app/data/models/messages/message_model.dart';
+import 'package:flutter_chatiy_app/features/chat/widgets/custom_chat_screen_action_bar.dart';
 import 'package:flutter_chatiy_app/features/chat/widgets/custom_chat_screen_app_bar_title.dart';
 import 'package:flutter_chatiy_app/features/chat/widgets/custom_message_list.dart';
 
@@ -47,6 +48,11 @@ class ChatScreen extends StatelessWidget {
         ),
       ],
     ),
-    body: const Column(children: [Expanded(child: CustomMessageList())]),
+    body: const Column(
+      children: [
+        Expanded(child: CustomMessageList()),
+        CustomChatScreenActionBar(),
+      ],
+    ),
   );
 }
