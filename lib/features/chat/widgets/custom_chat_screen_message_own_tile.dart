@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chatiy_app/core/themes/theme.dart';
 
-class CustomChatScreenMessageTile extends StatelessWidget {
-  const CustomChatScreenMessageTile({
+class CustomChatScreenMessageOwnTile extends StatelessWidget {
+  const CustomChatScreenMessageOwnTile({
     required this.message,
     required this.messageDate,
     super.key,
@@ -16,17 +16,17 @@ class CustomChatScreenMessageTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Align(
-        alignment: Alignment.centerLeft,
+        alignment: Alignment.centerRight,
         child: Column(
           mainAxisSize: .min,
-          crossAxisAlignment: .start,
+          crossAxisAlignment: .end,
           children: [
             DecoratedBox(
               decoration: const BoxDecoration(
-                color: Colors.grey,
+                color: AppColors.secondary,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(borderRadius),
-                  topRight: Radius.circular(borderRadius),
+                  bottomLeft: Radius.circular(borderRadius),
                   bottomRight: Radius.circular(borderRadius),
                 ),
               ),
