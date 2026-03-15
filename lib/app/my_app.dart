@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chatiy_app/core/routing/app_router.dart';
 import 'package:flutter_chatiy_app/core/themes/theme.dart';
 import 'package:flutter_chatiy_app/features/home/pages/home_screen.dart';
 
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
     theme: AppTheme.lightBase,
     darkTheme: AppTheme.darkBase,
     themeMode: ThemeMode.light,
+    onGenerateRoute: AppRouter.generateRoute,
     home: const HomeScreen(),
   );
 }
