@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chatiy_app/core/themes/theme.dart';
+import 'package:flutter_chatiy_app/core/utils/constans/app_colors.dart';
 
 class CustomNavigationBarItem extends StatelessWidget {
   const CustomNavigationBarItem({

@@ -1,95 +1,108 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_chatiy_app/core/utils/constans/app_colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-abstract class AppColors {
-  static const secondary = Color(0xFF3B76F6);
-  static const accent = Color(0xFFD6755B);
-  static const textDark = Color(0xFF53585A);
-  static const textLigth = Color(0xFFF5F5F5);
-  static const textFaded = Color(0xFF9899A5);
-  static const iconLight = Color(0xFFB1B4C0);
-  static const iconDark = Color(0xFFB1B3C1);
-  static const textHighlight = secondary;
-  static const cardLight = Color(0xFFF9FAFE);
-  static const cardDark = Color(0xFF303334);
-}
-
-abstract class _LightColors {
-  static const background = Colors.white;
-  static const card = AppColors.cardLight;
-}
-
-abstract class _DarkColors {
-  static const background = Color(0xFF1B1E1F);
-  static const card = AppColors.cardDark;
-}
-
-/// Reference to the application theme.
+/// Application theme manager using Singleton pattern.
+///
+/// This class provides centralized theme management for the entire application.
+/// It uses the Singleton pattern to ensure only one instance exists throughout
+/// the app lifecycle.
+///
+/// Usage:
+/// ```dart
+/// MaterialApp(
+///   theme: AppTheme.instance.light,
+///   darkTheme: AppTheme.instance.dark,
+/// )
+/// ```
 class AppTheme {
-  static const accentColor = AppColors.accent;
-  static final visualDensity = VisualDensity.adaptivePlatformDensity;
+  // Private constructor
+  AppTheme._();
 
-  static final darkBase = ThemeData.dark();
-  static final lightBase = ThemeData.light();
+  // Singleton instance
+  static final AppTheme _instance = AppTheme._();
 
-  /// Light theme and its settings.
+  /// Access the singleton instance
+  static AppTheme get instance => _instance;
+
+  // Theme configuration constants
+  static const _accentColor = AppColors.accent;
+  static final _visualDensity = VisualDensity.adaptivePlatformDensity;
+  static final _lightBase = ThemeData.light();
+  static final _darkBase = ThemeData.dark();
+
+  /// Light theme configuration.
+  ///
+  /// Provides a complete Material Design light theme with custom colors,
+  /// typography using Mulish font, and transparent app bar.
   ThemeData get light => ThemeData(
-    brightness: Brightness.light,
-    colorScheme: lightBase.colorScheme.copyWith(secondary: accentColor),
-    visualDensity: visualDensity,
-    textTheme: GoogleFonts.mulishTextTheme().apply(
-      bodyColor: AppColors.textDark,
-    ),
-    appBarTheme: lightBase.appBarTheme.copyWith(
-      iconTheme: lightBase.iconTheme,
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      centerTitle: true,
-      titleTextStyle: const TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 17,
-        color: AppColors.textDark,
-      ),
-      systemOverlayStyle: SystemUiOverlayStyle.dark,
-    ),
-    scaffoldBackgroundColor: _LightColors.background,
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(backgroundColor: AppColors.secondary),
-    ),
-    cardColor: _LightColors.card,
-    primaryTextTheme: const TextTheme(
-      titleLarge: TextStyle(color: AppColors.textDark),
-    ),
-    iconTheme: const IconThemeData(color: AppColors.iconDark),
-  );
+        brightness: Brightness.light,
+        colorScheme: _lightBase.colorScheme.copyWith(secondary: _accentColor),
+        visualDensity: _visualDensity,
+        textTheme: GoogleFonts.mulishTextTheme().apply(
+          bodyColor: AppColors.textDark,
+        ),
+        appBarTheme: _lightBase.appBarTheme.copyWith(
+          iconTheme: _lightBase.iconTheme,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          centerTitle: true,
+          titleTextStyle: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 17,
+            color: AppColors.textDark,
+          ),
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
+          surfaceTintColor: Colors.transparent,
+          scrolledUnderElevation: 0,
+        ),
+        scaffoldBackgroundColor: AppColors.backgroundLight,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.secondary,
+          ),
+        ),
+        cardColor: AppColors.cardLight,
+        primaryTextTheme: const TextTheme(
+          titleLarge: TextStyle(color: AppColors.textDark),
+        ),
+        iconTheme: const IconThemeData(color: AppColors.iconDark),
+      );
 
-  /// Dark theme and its settings.
+  /// Dark theme configuration.
+  ///
+  /// Provides a complete Material Design dark theme with custom colors,
+  /// typography using Inter font, and transparent app bar.
   ThemeData get dark => ThemeData(
-    brightness: Brightness.dark,
-    colorScheme: darkBase.colorScheme.copyWith(secondary: accentColor),
-    visualDensity: visualDensity,
-    textTheme: GoogleFonts.interTextTheme().apply(
-      bodyColor: AppColors.textLigth,
-    ),
-    appBarTheme: darkBase.appBarTheme.copyWith(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      centerTitle: true,
-      titleTextStyle: const TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 17,
-      ),
-      systemOverlayStyle: SystemUiOverlayStyle.light,
-    ),
-    scaffoldBackgroundColor: _DarkColors.background,
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(backgroundColor: AppColors.secondary),
-    ),
-    cardColor: _DarkColors.card,
-    primaryTextTheme: const TextTheme(
-      titleLarge: TextStyle(color: AppColors.textLigth),
-    ),
-    iconTheme: const IconThemeData(color: AppColors.iconLight),
-  );
+        brightness: Brightness.dark,
+        colorScheme: _darkBase.colorScheme.copyWith(secondary: _accentColor),
+        visualDensity: _visualDensity,
+        textTheme: GoogleFonts.interTextTheme().apply(
+          bodyColor: AppColors.textLight,
+        ),
+        appBarTheme: _darkBase.appBarTheme.copyWith(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          centerTitle: true,
+          titleTextStyle: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 17,
+          ),
+          systemOverlayStyle: SystemUiOverlayStyle.light,
+          surfaceTintColor: Colors.transparent,
+          scrolledUnderElevation: 0,
+        ),
+        scaffoldBackgroundColor: AppColors.backgroundDark,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.secondary,
+          ),
+        ),
+        cardColor: AppColors.cardDark,
+        primaryTextTheme: const TextTheme(
+          titleLarge: TextStyle(color: AppColors.textLight),
+        ),
+        iconTheme: const IconThemeData(color: AppColors.iconLight),
+      );
 }

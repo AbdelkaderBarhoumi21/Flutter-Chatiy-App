@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chatiy_app/core/extension/app_route_extension.dart';
 import 'package:flutter_chatiy_app/core/routing/app_route_names.dart';
-
-import 'package:flutter_chatiy_app/core/themes/theme.dart';
+import 'package:flutter_chatiy_app/core/utils/constans/app_colors.dart';
 import 'package:flutter_chatiy_app/core/widgets/avatar/avatar.dart';
 import 'package:flutter_chatiy_app/data/models/messages/message_model.dart';
 
@@ -71,7 +70,7 @@ class CustomMessageTile extends StatelessWidget {
                 ),
                 child: const Text(
                   '1',
-                  style: TextStyle(fontSize: 10, color: AppColors.textLigth),
+                  style: TextStyle(fontSize: 10, color: AppColors.textLight),
                 ),
               ),
             ],

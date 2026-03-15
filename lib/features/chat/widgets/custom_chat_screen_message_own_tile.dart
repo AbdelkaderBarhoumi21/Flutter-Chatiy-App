@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chatiy_app/core/themes/theme.dart';
+import 'package:flutter_chatiy_app/core/utils/constans/app_colors.dart';
 
 class CustomChatScreenMessageOwnTile extends StatelessWidget {
   const CustomChatScreenMessageOwnTile({
@@ -37,7 +37,7 @@ class CustomChatScreenMessageOwnTile extends StatelessWidget {
                 ),
                 child: Text(
                   message,
-                  style: const TextStyle(color: AppColors.textLigth),
+                  style: const TextStyle(color: AppColors.textLight),
                 ),
               ),
             ),

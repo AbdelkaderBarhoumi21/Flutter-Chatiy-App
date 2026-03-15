@@ -10,8 +10,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
     title: 'Chat App',
-    theme: AppTheme.lightBase,
-    darkTheme: AppTheme.darkBase,
+    theme: AppTheme.instance.light,
+    darkTheme: AppTheme.instance.dark,
     themeMode: ThemeMode.light,
     onGenerateRoute: AppRouter.generateRoute,
     home: const HomeScreen(),
