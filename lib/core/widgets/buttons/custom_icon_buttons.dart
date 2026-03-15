@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chatiy_app/theme.dart';
+import 'package:flutter_chatiy_app/core/themes/theme.dart';
 
 class IconBackgroundButtons extends StatelessWidget {
   const IconBackgroundButtons({

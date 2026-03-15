@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chatiy_app/models/stories_model.dart';
-import 'package:flutter_chatiy_app/widgets/avatar.dart';
+import 'package:flutter_chatiy_app/core/widgets/avatar/avatar.dart';
+import 'package:flutter_chatiy_app/data/models/stories/stories_model.dart';
 
 class CustomStoriesCard extends StatelessWidget {
   const CustomStoriesCard({required this.stories, super.key});
