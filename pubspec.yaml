@@ -10,6 +10,18 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
+  cached_network_image: ^3.4.1
+  cloud_functions: ^6.0.4
+  collection: ^1.19.1
+  faker: ^2.2.0 #Add fake data 
+  firebase_auth: ^6.1.2
+  firebase_core: ^4.2.1
+  google_fonts: ^6.3.3
+  jiffy: ^6.4.4
+  logger: ^2.6.2
+  stream_chat_flutter_core: ^9.21.0
+  meta: ^1.16.0
+  flutter_dotenv: ^6.0.0
 
 dev_dependencies:
   flutter_test:
@@ -17,5 +29,5 @@ dev_dependencies:
   flutter_lints: ^6.0.0
 flutter:
   uses-material-design: true
-  # assets:
-  # - images/a_dot_burr.jpeg
+  assets:
+  - .env
