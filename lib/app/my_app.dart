@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
     darkTheme: AppTheme.instance.dark,
     themeMode: ThemeMode.light,
     onGenerateRoute: AppRouter.generateRoute,
+    builder: (context, child) => StreamChatCore(client: client, child: child!),
     home: const HomeScreen(),
   );
 }
