@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chatiy_app/core/utils/helpers/app_helpers.dart';
+import 'package:flutter_chatiy_app/core/extension/app_route_extension.dart';
+import 'package:flutter_chatiy_app/core/extension/app_user_extension.dart';
+import 'package:flutter_chatiy_app/core/routing/app_route_names.dart';
 import 'package:flutter_chatiy_app/core/widgets/avatar/avatar.dart';
 import 'package:flutter_chatiy_app/core/widgets/buttons/custom_icon_buttons.dart';
 import 'package:flutter_chatiy_app/features/calls/pages/call_page.dart';
@@ -38,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
     title.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
@@ -63,11 +65,11 @@ class _HomeScreenState extends State<HomeScreen> {
         Padding(
           padding: const EdgeInsets.only(right: 24.0),
           child: Hero(
-            tag: 'picture',
+            tag: 'hero-profile-picture',
             child: Avatar.small(
-              url: AppHelpers.randomPictureUrl(),
+              url: context.currentUserImage,
               onTap: () {
-                // Todo Profile
+                context.pushNamed(AppRouteNames.profileScreen);
               },
             ),
           ),
