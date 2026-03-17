@@ -8,7 +8,7 @@ class DemoUser {
   final String image;
 }
 
-const users = [
+const List<DemoUser> users = [
   userGordon,
   userSalvatore,
   userSacha,

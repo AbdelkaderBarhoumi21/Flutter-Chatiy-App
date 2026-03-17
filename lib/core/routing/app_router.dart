@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chatiy_app/core/routing/app_route_names.dart';
 import 'package:flutter_chatiy_app/data/models/messages/message_model.dart';
 import 'package:flutter_chatiy_app/features/chat/pages/chat_screen.dart';
+import 'package:flutter_chatiy_app/features/users/pages/select_user_screen.dart';
 
 /// Centralized routing configuration for the application.
 ///
@@ -53,6 +54,8 @@ class AppRouter {
           );
         }
         return _errorRoute('Invalid arguments for ChatScreen');
+      case AppRouteNames.selectUserScreen:
+        return MaterialPageRoute(builder: (_) => const SelectUserScreen());
 
       default:
         return _errorRoute('Route not found: ${settings.name}');
