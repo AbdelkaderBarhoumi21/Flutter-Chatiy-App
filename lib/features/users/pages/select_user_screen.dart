@@ -44,7 +44,7 @@ class _SelectUserScreenState extends State<SelectUserScreen> {
       );
 
       // Navigate to chat screen after successful connection
-      context.pushReplacementNamed(AppRouteNames.chatScreen);
+      context.pushReplacementNamed(AppRouteNames.home);
     } on Exception catch (e, stackTrace) {
       // Log error if connection fails
       logger.e('Could not connect user', error: e, stackTrace: stackTrace);

@@ -10,7 +10,7 @@ class SelectUserButton extends StatelessWidget {
   });
 
   final DemoUser user;
-  final Function(DemoUser user) onPressed;
+  final ValueChanged<DemoUser> onPressed;
 
   @override
   Widget build(BuildContext context) => Padding(
