@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chatiy_app/core/routing/app_router.dart';
 import 'package:flutter_chatiy_app/core/themes/theme.dart';
 import 'package:flutter_chatiy_app/features/home/pages/home_screen.dart';
+import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({required this.client, super.key});
+  final StreamChatClient client;
 
   @override
   Widget build(BuildContext context) => MaterialApp(
