@@ -3,7 +3,6 @@ import 'package:flutter_chatiy_app/app/app.dart';
 import 'package:flutter_chatiy_app/core/extension/app_route_extension.dart';
 import 'package:flutter_chatiy_app/core/extension/app_user_extension.dart';
 import 'package:flutter_chatiy_app/core/routing/app_route_names.dart';
-import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 class SignoutButton extends StatefulWidget {
   const SignoutButton({super.key});
