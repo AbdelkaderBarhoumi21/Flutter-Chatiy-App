@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chatiy_app/core/extension/app_route_extension.dart';
 import 'package:flutter_chatiy_app/core/extension/app_user_extension.dart';
+import 'package:flutter_chatiy_app/core/routing/app_route_names.dart';
 import 'package:flutter_chatiy_app/core/utils/constans/app_colors.dart';
 import 'package:flutter_chatiy_app/core/utils/helpers/app_helpers.dart';
 import 'package:flutter_chatiy_app/core/widgets/avatar/avatar.dart';
@@ -16,8 +18,8 @@ class CustomMessageTile extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
     child: GestureDetector(
-      // onTap: () =>
-      //     context.pushNamed(AppRouteNames.chatScreen, arguments: messageData),
+      onTap: () =>
+          context.pushNamed(AppRouteNames.chatScreen, arguments: channel),
       child: Row(
         children: [
           Avatar.medium(
