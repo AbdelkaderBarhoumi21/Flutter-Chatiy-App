@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chatiy_app/core/utils/constans/app_colors.dart';
 import 'package:flutter_chatiy_app/core/widgets/buttons/glowing_actions_buttons.dart';
+import 'package:flutter_chatiy_app/features/contacts/pages/contacts_page.dart';
 import 'package:flutter_chatiy_app/features/navigation_menu/widgets/custom_navigation_bar_item.dart';
 
 class CustomNavigationBarView extends StatefulWidget {
@@ -61,7 +62,7 @@ class _CustomNavigationBarViewState extends State<CustomNavigationBarView> {
                       builder: (context) => const Dialog(
                         child: AspectRatio(
                           aspectRatio: 8 / 7,
-                          child: Text('Data'),
+                          child: ContactsPage(),
                         ),
                       ),
                     );
