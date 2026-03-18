@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_chatiy_app/core/widgets/errors/display_error_message.dart';
 import 'package:flutter_chatiy_app/features/messages/widgets/custom_message_tile_view.dart';
@@ -24,6 +26,40 @@ class _MessagePageState extends State<MessagePage> {
       channelStateSort: [const SortOption.desc(ChannelSortKey.lastMessageAt)],
       limit: 20,
     );
+
+    // Create demo channels if none exist
+    unawaited(_createDemoChannelsIfNeeded());
+  }
+
+  Future<void> _createDemoChannelsIfNeeded() async {
+    try {
+      final client = StreamChatCore.of(context).client;
+      final currentUserId = client.state.currentUser?.id;
+
+      if (currentUserId == null) return;
+
+      // Create a test channel with another demo user
+      final channel = client.channel(
+        'messaging',
+        id: 'demo-channel-$currentUserId',
+        extraData: {
+          'name': 'Test Chat',
+          'members': [currentUserId],
+        },
+      );
+
+      await channel.watch();
+
+      // Send a welcome message
+      await channel.sendMessage(
+        Message(text: 'Welcome to your first chat! 👋'),
+      );
+
+      // Refresh the list
+      _channelListController.doInitialLoad();
+    } catch (e) {
+      debugPrint('Error creating demo channel: $e');
+    }
   }
 
   @override
@@ -65,13 +101,7 @@ class _MessagePageState extends State<MessagePage> {
           ],
         );
       },
-      loading: () => const Center(
-        child: SizedBox(
-          width: 100,
-          height: 100,
-          child: CircularProgressIndicator(),
-        ),
-      ),
+      loading: () => const Center(child: CircularProgressIndicator()),
       error: (error) => DisplayErrorMessage(error: error),
     ),
   );

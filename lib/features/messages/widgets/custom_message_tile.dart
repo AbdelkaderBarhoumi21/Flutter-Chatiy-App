@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chatiy_app/core/extension/app_route_extension.dart';
-import 'package:flutter_chatiy_app/core/routing/app_route_names.dart';
+import 'package:flutter_chatiy_app/core/extension/app_user_extension.dart';
 import 'package:flutter_chatiy_app/core/utils/constans/app_colors.dart';
+import 'package:flutter_chatiy_app/core/utils/helpers/app_helpers.dart';
 import 'package:flutter_chatiy_app/core/widgets/avatar/avatar.dart';
-import 'package:flutter_chatiy_app/data/models/messages/message_model.dart';
+import 'package:flutter_chatiy_app/features/messages/widgets/custom_last_message_date.dart';
+import 'package:flutter_chatiy_app/features/messages/widgets/custom_last_message_text.dart';
+import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 class CustomMessageTile extends StatelessWidget {
-  const CustomMessageTile({required this.messageData, super.key});
+  const CustomMessageTile({required this.channel, super.key});
 
-  final MessageModel messageData;
+  final Channel channel;
 
   @override
   Widget build(BuildContext context) => Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
     child: GestureDetector(
-      onTap: () =>
-          context.pushNamed(AppRouteNames.chatScreen, arguments: messageData),
+      // onTap: () =>
+      //     context.pushNamed(AppRouteNames.chatScreen, arguments: messageData),
       child: Row(
         children: [
-          Avatar.medium(url: messageData.profilePicture),
+          Avatar.medium(
+            url: AppHelpers.getChannelImage(channel, context.currentUser!),
+          ),
           const SizedBox(width: 10),
           Expanded(
             child: Column(
@@ -26,7 +30,7 @@ class CustomMessageTile extends StatelessWidget {
               mainAxisAlignment: .center,
               children: [
                 Text(
-                  messageData.senderName,
+                  AppHelpers.getChannelName(channel, context.currentUser!),
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     letterSpacing: 0.2,
@@ -35,14 +39,7 @@ class CustomMessageTile extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 4),
-                Text(
-                  messageData.message,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: AppColors.textFaded,
-                  ),
-                ),
+                CustomLastMessageText(channel: channel),
               ],
             ),
           ),
@@ -50,15 +47,7 @@ class CustomMessageTile extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Text(
-                messageData.dateMessage.toUpperCase(),
-                style: const TextStyle(
-                  fontSize: 11,
-                  letterSpacing: -0.2,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.textFaded,
-                ),
-              ),
+              CustomLastMessageDate(channel: channel),
               const SizedBox(height: 8),
               Container(
                 width: 18,
