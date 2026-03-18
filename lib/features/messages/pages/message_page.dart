@@ -24,6 +24,9 @@ class _MessagePageState extends State<MessagePage> {
       channelStateSort: [const SortOption.desc(ChannelSortKey.lastMessageAt)],
       limit: 20,
     );
+    // Triggers the initial HTTP request to load the first 20 channels from the server.
+    // Without this call, the controller won't fetch any data and the UI will stay in loading state forever.
+    _channelListController.doInitialLoad();
   }
 
   @override
