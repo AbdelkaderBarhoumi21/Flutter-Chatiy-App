@@ -44,21 +44,23 @@ class _ContactsPageState extends State<ContactsPage> {
           );
         }
 
-        return ListView.builder(
-          itemCount: users.length + (nextPageKey != null ? 1 : 0),
-          itemBuilder: (context, index) {
-            if (index == users.length) {
-              _userListController.loadMore(index);
-              return const Center(
-                child: Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: CircularProgressIndicator(),
-                ),
-              );
-            }
-            final user = users[index];
-            return ContactsTile(user: user);
-          },
+        return Scrollbar(
+          child: ListView.builder(
+            itemCount: users.length + (nextPageKey != null ? 1 : 0),
+            itemBuilder: (context, index) {
+              if (index == users.length) {
+                _userListController.loadMore(index);
+                return const Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+              final user = users[index];
+              return ContactsTile(user: user);
+            },
+          ),
         );
       },
       loading: () => const Center(child: CircularProgressIndicator()),

@@ -9,35 +9,32 @@ class ContactsTile extends StatelessWidget {
   const ContactsTile({required this.user, super.key});
 
   final User user;
+  Future<void> createChannel(BuildContext context) async {
+    try {
+      final client = StreamChatCore.of(context).client;
+      final currentUserId = client.state.currentUser?.id;
+      if (currentUserId == null) return;
+
+      // Create a test channel with another demo user
+      final channel = client.channel(
+        'messaging',
+        extraData: {
+          'members': [context.currentUser?.id, user.id],
+        },
+      );
+      await channel.watch();
+      context.pushNamed(AppRouteNames.chatScreen, arguments: channel);
+    } catch (e) {
+      debugPrint('Error creating demo channel: $e');
+    }
+  }
 
   @override
-  Widget build(BuildContext context) {
-    Future<void> createChannel() async {
-      try {
-        final client = StreamChatCore.of(context).client;
-        final currentUserId = client.state.currentUser?.id;
-        if (currentUserId == null) return;
-
-        // Create a test channel with another demo user
-        final channel = client.channel(
-          'messaging',
-          extraData: {
-            'members': [context.currentUser?.id, user.id],
-          },
-        );
-        await channel.watch();
-        context.pushNamed(AppRouteNames.chatScreen, arguments: channel);
-      } catch (e) {
-        debugPrint('Error creating demo channel: $e');
-      }
-    }
-
-    return InkWell(
-      onTap: createChannel,
-      child: ListTile(
-        leading: Avatar.small(url: user.image),
-        title: Text(user.name),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => InkWell(
+    onTap: () => createChannel(context),
+    child: ListTile(
+      leading: Avatar.small(url: user.image),
+      title: Text(user.name),
+    ),
+  );
 }

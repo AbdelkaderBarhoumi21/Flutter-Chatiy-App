@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chatiy_app/core/extension/app_user_extension.dart';
+import 'package:flutter_chatiy_app/core/utils/helpers/app_helpers.dart';
 import 'package:flutter_chatiy_app/core/widgets/avatar/avatar.dart';
-import 'package:flutter_chatiy_app/data/models/messages/message_model.dart';
+import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 class CustomChatScreenAppBarTitle extends StatelessWidget {
-  const CustomChatScreenAppBarTitle({required this.messageModel, super.key});
-  final MessageModel messageModel;
+  const CustomChatScreenAppBarTitle({required this.channel, super.key});
+  final Channel channel;
 
   @override
   Widget build(BuildContext context) => Row(
     children: [
-      Avatar.small(url: messageModel.profilePicture),
+      Avatar.small(
+        url: AppHelpers.getChannelImage(channel, context.currentUser!),
+      ),
       const SizedBox(width: 16),
 
       Expanded(
@@ -18,7 +22,7 @@ class CustomChatScreenAppBarTitle extends StatelessWidget {
           mainAxisAlignment: .center,
           children: [
             Text(
-              messageModel.senderName,
+              AppHelpers.getChannelName(channel, context.currentUser!),
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(fontSize: 14),
             ),
