@@ -20,13 +20,16 @@ class CustomLastMessageDate extends StatelessWidget {
 
       if (lastMessageAt.millisecondsSinceEpoch >=
           startOfDay.millisecondsSinceEpoch) {
+        //.jm Returns 12 hour and minute. Example: 12:11 PM
         stringDate = Jiffy.parseFromDateTime(lastMessageAt.toLocal()).jm;
       } else if (lastMessageAt.millisecondsSinceEpoch >=
           startOfDay.subtract(const Duration(days: 1)).millisecondsSinceEpoch) {
         stringDate = 'YESTERDAY';
       } else if (startOfDay.difference(lastMessageAt).inDays < 7) {
+        //return the day for example tuesday
         stringDate = Jiffy.parseFromDateTime(lastMessageAt.toLocal()).EEEE;
       } else {
+        //Returns the year, of month and date. Example: 9/23/1997
         stringDate = Jiffy.parseFromDateTime(lastMessageAt.toLocal()).yMd;
       }
       return Text(
