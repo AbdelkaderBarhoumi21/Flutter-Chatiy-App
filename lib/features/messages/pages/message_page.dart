@@ -6,11 +6,6 @@ class MessagePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChannelListView(
-      onChannelTap: (channel) {
-        // TODO: Navigate to channel/chat screen
-      },
-    );
     // return CustomScrollView(
     //   slivers: [
     //     const SliverToBoxAdapter(child: CustomStories()),

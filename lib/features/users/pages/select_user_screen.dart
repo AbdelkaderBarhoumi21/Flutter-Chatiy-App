@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chatiy_app/app/app.dart';
 import 'package:flutter_chatiy_app/core/extension/app_route_extension.dart';
+import 'package:flutter_chatiy_app/core/extension/app_user_extension.dart';
 import 'package:flutter_chatiy_app/core/routing/app_route_names.dart';
 import 'package:flutter_chatiy_app/data/models/users/demo_users.dart';
 import 'package:flutter_chatiy_app/features/users/widgets/select_user_button.dart';
@@ -34,7 +35,7 @@ class _SelectUserScreenState extends State<SelectUserScreen> {
 
     try {
       // Get the Stream Chat client from context
-      final client = StreamChatCore.of(context).client;
+      final client = context.client;
 
       // Connect the user to Stream Chat with their profile data
       await client.connectUser(
