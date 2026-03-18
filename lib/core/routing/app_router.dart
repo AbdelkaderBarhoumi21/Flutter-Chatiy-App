@@ -1,33 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chatiy_app/core/routing/app_route_names.dart';
-import 'package:flutter_chatiy_app/data/models/messages/message_model.dart';
 import 'package:flutter_chatiy_app/features/chat/pages/chat_screen.dart';
 import 'package:flutter_chatiy_app/features/home/pages/home_screen.dart';
 import 'package:flutter_chatiy_app/features/users/pages/profile_screen.dart';
 import 'package:flutter_chatiy_app/features/users/pages/select_user_screen.dart';
+import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
-/// Centralized routing configuration for the application.
-///
-/// This class handles all route generation and navigation logic. When you
-/// navigate using `context.pushNamed()`, Flutter calls [generateRoute] with
-/// a [RouteSettings] object containing:
-/// - `name`: The route identifier (e.g., '/chat')
-/// - `arguments`: Optional data passed to the destination screen
-///
-/// Example:
-/// ```dart
-/// // Navigate to chat screen with message data
-/// context.pushNamed(
-///   AppRouteNames.chatScreen,
-///   arguments: messageModel,
-/// );
-/// ```
-///
-/// The router validates arguments and returns appropriate routes, or an error
-/// screen if the route is invalid or arguments don't match expected types.
-///
-/// **What is MaterialPageRoute?**
-///
 /// [MaterialPageRoute] is a Flutter class that creates a route with Material
 /// Design page transitions:
 /// - On Android: Slides up from bottom with fade-in
@@ -39,20 +17,13 @@ import 'package:flutter_chatiy_app/features/users/pages/select_user_screen.dart'
 /// navigation. The `builder` function creates the actual screen widget when
 /// the route is pushed.
 class AppRouter {
-  /// Generates routes based on [RouteSettings] provided by the navigator.
-  ///
-  /// This method is called by MaterialApp's `onGenerateRoute` callback
-  /// whenever navigation occurs. It matches the route name, validates
-  /// arguments, and returns a [MaterialPageRoute] with the appropriate screen.
-  ///
-  /// Returns an error route if the route name is unknown or arguments are invalid.
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case AppRouteNames.chatScreen:
-        final messageModel = settings.arguments;
-        if (messageModel is MessageModel) {
+        final channel = settings.arguments;
+        if (channel is Channel) {
           return MaterialPageRoute(
-            builder: (_) => ChatScreen(messageModel: messageModel),
+            builder: (_) => ChatScreen(channel: channel),
           );
         }
         return _errorRoute('Invalid arguments for ChatScreen');

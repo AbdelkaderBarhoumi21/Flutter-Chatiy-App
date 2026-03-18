@@ -6,10 +6,11 @@ import 'package:flutter_chatiy_app/data/models/messages/message_model.dart';
 import 'package:flutter_chatiy_app/features/chat/widgets/custom_chat_screen_action_bar.dart';
 import 'package:flutter_chatiy_app/features/chat/widgets/custom_chat_screen_app_bar_title.dart';
 import 'package:flutter_chatiy_app/features/chat/widgets/custom_message_list.dart';
+import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 class ChatScreen extends StatelessWidget {
-  const ChatScreen({required this.messageModel, super.key});
-  final MessageModel messageModel;
+  const ChatScreen({required this.channel, super.key});
+  final Channel channel;
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -26,7 +27,7 @@ class ChatScreen extends StatelessWidget {
           onTap: () => context.pop(),
         ),
       ),
-      title: CustomChatScreenAppBarTitle(messageModel: messageModel),
+      // title: CustomChatScreenAppBarTitle(messageModel: messageModel),
       actions: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
