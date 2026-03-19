@@ -13,42 +13,27 @@ class CustomMessageList extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Padding(
     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-    child: ListView.separated(
-      itemCount: messages.length + 1,
-      separatorBuilder: (context, index) {
-        if (index == messages.length - 1) {
-          return CustomDateLabel(dateTime: messages[index].createdAt);
-        }
-        if (messages.length == 1) {
-          return const SizedBox.shrink();
-        } else if (index >= messages.length - 1) {
-          return const SizedBox.shrink();
-        } else if (index <= messages.length - 1) {
-          final message = messages[index];
-          final nextMessage = messages[index + 1];
-          if (!Jiffy.parseFromDateTime(message.createdAt.toLocal()).isSame(
-            Jiffy.parseFromDateTime(nextMessage.createdAt.toLocal()),
-            unit: Unit.day,
-          )) {
-            return CustomDateLabel(dateTime: nextMessage.createdAt);
-          } else {
-            return const SizedBox.shrink();
-          }
-        } else {
-          return const SizedBox.shrink();
-        }
-      },
+    child: ListView.builder(
+      reverse: true,
+      itemCount: messages.length,
       itemBuilder: (context, index) {
-        if (index < messages.length) {
-          final message = messages[index];
-          if (message.user?.id == context.currentUser?.id) {
-            return CustomChatScreenMessageOwnTile(message: message);
-          } else {
-            return CustomChatScreenMessageTile(message: message);
-          }
-        } else {
-          return const SizedBox.shrink();
-        }
+        final message = messages[index];
+        final bool isFirstInGroup =
+            index == messages.length - 1 ||
+            !Jiffy.parseFromDateTime(message.createdAt.toLocal()).isSame(
+              Jiffy.parseFromDateTime(messages[index + 1].createdAt.toLocal()),
+              unit: Unit.day,
+            );
+
+        return Column(
+          children: [
+            if (isFirstInGroup) CustomDateLabel(dateTime: message.createdAt),
+            if (message.user?.id == context.currentUser?.id)
+              CustomChatScreenMessageOwnTile(message: message)
+            else
+              CustomChatScreenMessageTile(message: message),
+          ],
+        );
       },
     ),
   );

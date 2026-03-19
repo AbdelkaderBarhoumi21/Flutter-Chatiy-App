@@ -48,7 +48,7 @@ class _CustomDateLabelState extends State<CustomDateLabel> {
     final color = Theme.of(context).cardColor;
     return Center(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 32.0),
+        padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: color,
