@@ -3,9 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chatiy_app/core/utils/constans/app_colors.dart';
 import 'package:flutter_chatiy_app/core/widgets/buttons/glowing_actions_buttons.dart';
 
-class CustomChatScreenActionBar extends StatelessWidget {
+class CustomChatScreenActionBar extends StatefulWidget {
   const CustomChatScreenActionBar({super.key});
 
+  @override
+  State<CustomChatScreenActionBar> createState() =>
+      _CustomChatScreenActionBarState();
+}
+
+class _CustomChatScreenActionBarState extends State<CustomChatScreenActionBar> {
+  final TextEditingController controller = TextEditingController();
+  Future<void> _sendMessage()async{
+    if(controller.text.isNotEmpty){
+      
+    }
+  }
   @override
   Widget build(BuildContext context) => SafeArea(
     top: false,

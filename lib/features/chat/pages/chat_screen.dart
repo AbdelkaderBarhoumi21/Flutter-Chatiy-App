@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chatiy_app/core/extension/app_route_extension.dart';
 import 'package:flutter_chatiy_app/core/widgets/buttons/custom_icon_buttons.dart';
+import 'package:flutter_chatiy_app/core/widgets/errors/display_error_message.dart';
 import 'package:flutter_chatiy_app/features/chat/widgets/custom_chat_screen_action_bar.dart';
 import 'package:flutter_chatiy_app/features/chat/widgets/custom_chat_screen_app_bar_title.dart';
 import 'package:flutter_chatiy_app/features/chat/widgets/custom_message_list.dart';
@@ -48,10 +49,19 @@ class ChatScreen extends StatelessWidget {
         ),
       ],
     ),
-    body: const Column(
+    body: Column(
       children: [
-        Expanded(child: CustomMessageList()),
-        CustomChatScreenActionBar(),
+        Expanded(
+          child: MessageListCore(
+            loadingBuilder: (context) =>
+                const Center(child: CircularProgressIndicator()),
+            emptyBuilder: (context) => const SizedBox.shrink(),
+            errorBuilder: (context, error) => DisplayErrorMessage(error: error),
+            messageListBuilder: (context, messages) =>
+                CustomMessageList(messages: messages),
+          ),
+        ),
+        const CustomChatScreenActionBar(),
       ],
     ),
   );

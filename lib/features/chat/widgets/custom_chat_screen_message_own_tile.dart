@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chatiy_app/core/utils/constans/app_colors.dart';
+import 'package:jiffy/jiffy.dart';
+import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 class CustomChatScreenMessageOwnTile extends StatelessWidget {
-  const CustomChatScreenMessageOwnTile({
-    required this.message,
-    required this.messageDate,
-    super.key,
-  });
-  final String message;
-  final String messageDate;
+  const CustomChatScreenMessageOwnTile({required this.message, super.key});
+  final Message message;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +33,7 @@ class CustomChatScreenMessageOwnTile extends StatelessWidget {
                   vertical: 20,
                 ),
                 child: Text(
-                  message,
+                  message.text ?? '',
                   style: const TextStyle(color: AppColors.textLight),
                 ),
               ),
@@ -45,7 +42,7 @@ class CustomChatScreenMessageOwnTile extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
-                messageDate,
+                Jiffy.parseFromDateTime(message.createdAt.toLocal()).jm,
                 style: const TextStyle(
                   color: AppColors.textFaded,
                   fontSize: 10,
