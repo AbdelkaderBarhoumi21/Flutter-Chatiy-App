@@ -4,7 +4,5 @@ class NotificationsPage extends StatelessWidget {
   const NotificationsPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Notifications Page'));
-  }
+  Widget build(BuildContext context) => const Center(child: Text('Notifications Page'));
 }

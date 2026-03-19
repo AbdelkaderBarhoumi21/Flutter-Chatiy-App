@@ -4,7 +4,5 @@ class CallPage extends StatelessWidget {
   const CallPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Call Page'));
-  }
+  Widget build(BuildContext context) => const Center(child: Text('Call Page'));
 }

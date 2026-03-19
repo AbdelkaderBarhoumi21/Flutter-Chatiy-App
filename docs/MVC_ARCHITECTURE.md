@@ -9,9 +9,35 @@ This Flutter chat application has been refactored from Clean Architecture to **M
 lib/
 ├── models/              # Data models (M in MVC)
 │   ├── messages/
+│   │   └── message_model.dart
 │   ├── stories/
+│   │   └── stories_model.dart
 │   └── users/
-├── views/               # UI components - can be organized here (V in MVC)
+│       └── demo_users.dart
+├── views/               # UI components (V in MVC)
+│   ├── chat/
+│   │   ├── pages/
+│   │   │   └── chat_screen.dart
+│   │   └── widgets/
+│   ├── messages/
+│   │   ├── pages/
+│   │   │   └── message_page.dart
+│   │   └── widgets/
+│   ├── contacts/
+│   │   ├── pages/
+│   │   │   └── contacts_page.dart
+│   │   └── widgets/
+│   ├── users/
+│   │   ├── pages/
+│   │   │   ├── profile_screen.dart
+│   │   │   └── select_user_screen.dart
+│   │   └── widgets/
+│   ├── home/
+│   │   └── pages/
+│   │       └── home_screen.dart
+│   ├── calls/
+│   ├── notifications/
+│   └── navigation_menu/
 ├── controllers/         # Business logic (C in MVC)
 │   ├── chat_controller.dart
 │   ├── chat_action_controller.dart
@@ -19,19 +45,14 @@ lib/
 │   ├── contacts_controller.dart
 │   ├── user_auth_controller.dart
 │   └── home_navigation_controller.dart
-├── features/            # Feature-based UI organization
-│   ├── chat/
-│   │   ├── pages/
-│   │   └── widgets/
-│   ├── messages/
-│   ├── contacts/
-│   ├── users/
-│   └── home/
 └── core/                # Shared utilities, widgets, themes
-    ├── widgets/
-    ├── utils/
-    ├── routing/
-    └── themes/
+    ├── app/             # App entry point
+    ├── widgets/         # Reusable widgets
+    ├── utils/           # Constants, helpers
+    ├── routing/         # Navigation
+    ├── themes/          # App themes
+    ├── extension/       # Extension methods
+    └── services/        # Services
 ```
 
 ## MVC Components
@@ -49,14 +70,14 @@ Data structures that represent your application data.
 - Hold application data
 - No business logic
 
-### 2. Views (lib/features/*/pages/ and lib/features/*/widgets/)
-UI components that display data to users.
+### 2. Views (lib/views/)
+UI components that display data to users. Organized by feature.
 
 **Examples:**
-- `ChatScreen` - Displays chat interface
-- `MessagePage` - Displays message list
-- `ContactsPage` - Displays contacts
-- `CustomChatScreenActionBar` - Chat input widget
+- [chat_screen.dart](lib/views/chat/pages/chat_screen.dart) - Displays chat interface
+- [message_page.dart](lib/views/messages/pages/message_page.dart) - Displays message list
+- [contacts_page.dart](lib/views/contacts/pages/contacts_page.dart) - Displays contacts
+- [custom_chat_screen_action_bar.dart](lib/views/chat/widgets/custom_chat_screen_action_bar.dart) - Chat input widget
 
 **Responsibilities:**
 - Display UI
@@ -68,6 +89,8 @@ UI components that display data to users.
 Business logic layer that manages data and coordinates between Models and Views.
 
 #### ChatController
+**File:** [chat_controller.dart](lib/controllers/chat_controller.dart)
+
 Manages chat screen business logic:
 - Handles unread message count
 - Marks messages as read
@@ -80,6 +103,8 @@ _controller.init();
 ```
 
 #### ChatActionController
+**File:** [chat_action_controller.dart](lib/controllers/chat_action_controller.dart)
+
 Manages message sending and typing indicators:
 - Sends messages to channel
 - Handles typing indicators
@@ -92,6 +117,8 @@ await _controller.sendMessage();
 ```
 
 #### MessageController
+**File:** [message_controller.dart](lib/controllers/message_controller.dart)
+
 Manages message list:
 - Fetches channel list
 - Handles pagination
@@ -104,6 +131,8 @@ _controller.init();
 ```
 
 #### ContactsController
+**File:** [contacts_controller.dart](lib/controllers/contacts_controller.dart)
+
 Manages contacts list:
 - Fetches user list
 - Handles pagination
@@ -116,6 +145,8 @@ _controller.init();
 ```
 
 #### UserAuthController
+**File:** [user_auth_controller.dart](lib/controllers/user_auth_controller.dart)
+
 Manages user authentication:
 - Connects users to Stream Chat
 - Disconnects users
@@ -128,6 +159,8 @@ await _controller.connectUser(user: user, setLoading: callback);
 ```
 
 #### HomeNavigationController
+**File:** [home_navigation_controller.dart](lib/controllers/home_navigation_controller.dart)
+
 Manages home screen navigation:
 - Handles bottom navigation
 - Manages page state
@@ -188,13 +221,27 @@ void dispose() {
 - `data/repositories/` - Empty folder
 - `data/datasource/` - Empty folder
 - Feature-level `providers/` folders - Unused
+- `features/` folder - Moved to `views/`
 
 ### What was added:
 - `controllers/` folder with all business logic
 - Centralized `models/` folder
+- `views/` folder for all UI components
 
 ### What was moved:
 - `data/models/` → `models/`
+- `features/` → `views/`
+
+### Import Changes:
+```dart
+// Old Clean Architecture
+import 'package:flutter_chatiy_app/data/models/messages/message_model.dart';
+import 'package:flutter_chatiy_app/features/chat/pages/chat_screen.dart';
+
+// New MVC
+import 'package:flutter_chatiy_app/models/messages/message_model.dart';
+import 'package:flutter_chatiy_app/views/chat/pages/chat_screen.dart';
+```
 
 ## Example: Adding a New Feature
 
@@ -225,7 +272,7 @@ class MyFeatureController {
 
 ### Step 3: Create View
 ```dart
-// lib/features/my_feature/pages/my_page.dart
+// lib/views/my_feature/pages/my_page.dart
 class MyPage extends StatefulWidget {
   const MyPage({super.key});
 
@@ -285,3 +332,14 @@ class _MyPageState extends State<MyPage> {
 - Controllers manage Stream SDK instances (Client, Channel, etc.)
 - UI widgets use Stream's reactive components with controller data
 - All async operations are handled in controllers
+- **No business logic in UI** - This is strictly enforced
+
+## Refactoring Checklist
+
+✅ Models moved from `data/models/` to `models/`
+✅ Views moved from `features/` to `views/`
+✅ Controllers created in `controllers/`
+✅ Business logic extracted from UI to controllers
+✅ All imports updated
+✅ Clean architecture folders removed
+✅ Code analyzed with no errors

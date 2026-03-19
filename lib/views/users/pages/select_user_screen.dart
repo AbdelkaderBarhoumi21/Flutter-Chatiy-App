@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chatiy_app/core/app/app.dart';
 import 'package:flutter_chatiy_app/controllers/user_auth_controller.dart';
-import 'package:flutter_chatiy_app/core/extension/app_route_extension.dart';
+import 'package:flutter_chatiy_app/core/app/app.dart';
 import 'package:flutter_chatiy_app/core/extension/app_get_stream_extension.dart';
+import 'package:flutter_chatiy_app/core/extension/app_route_extension.dart';
 import 'package:flutter_chatiy_app/core/routing/app_route_names.dart';
 import 'package:flutter_chatiy_app/models/users/demo_users.dart';
 import 'package:flutter_chatiy_app/views/users/widgets/select_user_button.dart';
