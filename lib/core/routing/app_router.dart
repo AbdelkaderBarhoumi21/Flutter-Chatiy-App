@@ -23,7 +23,10 @@ class AppRouter {
         final channel = settings.arguments;
         if (channel is Channel) {
           return MaterialPageRoute(
-            builder: (_) => ChatScreen(channel: channel),
+            builder: (_) => StreamChannel(
+              channel: channel,
+              child: ChatScreen(channel: channel),
+            ),
           );
         }
         return _errorRoute('Invalid arguments for ChatScreen');
