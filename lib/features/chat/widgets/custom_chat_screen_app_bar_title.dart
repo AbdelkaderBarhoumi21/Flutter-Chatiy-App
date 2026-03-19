@@ -37,7 +37,10 @@ class CustomChatScreenAppBarTitle extends StatelessWidget {
                 statusBuilder: (context, status) {
                   switch (status) {
                     case ConnectionStatus.connected:
-                      return CustomConnectedTitleState(members: data);
+                      return CustomConnectedTitleState(
+                        channel: channel,
+                        members: data,
+                      );
                     case ConnectionStatus.connecting:
                       return const Text(
                         'Connecting',

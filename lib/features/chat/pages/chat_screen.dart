@@ -12,47 +12,50 @@ class ChatScreen extends StatelessWidget {
   final Channel channel;
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      iconTheme: Theme.of(context).iconTheme,
-      centerTitle: false,
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      leadingWidth: 54,
-      leading: Align(
-        alignment: Alignment.centerRight,
-        child: IconBackgroundButtons(
-          icon: CupertinoIcons.back,
-          onTap: () => context.pop(),
+  Widget build(BuildContext context) => StreamChannel(
+    channel: channel,
+    child: Scaffold(
+      appBar: AppBar(
+        iconTheme: Theme.of(context).iconTheme,
+        centerTitle: false,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leadingWidth: 54,
+        leading: Align(
+          alignment: Alignment.centerRight,
+          child: IconBackgroundButtons(
+            icon: CupertinoIcons.back,
+            onTap: () => context.pop(),
+          ),
         ),
+        title: CustomChatScreenAppBarTitle(channel: channel),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Center(
+              child: IconBorderButtons(
+                icon: CupertinoIcons.video_camera_solid,
+                onTap: () {},
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: Center(
+              child: IconBorderButtons(
+                icon: CupertinoIcons.phone_solid,
+                onTap: () {},
+              ),
+            ),
+          ),
+        ],
       ),
-      title: CustomChatScreenAppBarTitle(channel: channel),
-      actions: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Center(
-            child: IconBorderButtons(
-              icon: CupertinoIcons.video_camera_solid,
-              onTap: () {},
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(right: 20.0),
-          child: Center(
-            child: IconBorderButtons(
-              icon: CupertinoIcons.phone_solid,
-              onTap: () {},
-            ),
-          ),
-        ),
-      ],
-    ),
-    body: const Column(
-      children: [
-        Expanded(child: CustomMessageList()),
-        CustomChatScreenActionBar(),
-      ],
+      body: const Column(
+        children: [
+          Expanded(child: CustomMessageList()),
+          CustomChatScreenActionBar(),
+        ],
+      ),
     ),
   );
 }

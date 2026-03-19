@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chatiy_app/core/extension/app_get_stream_extension.dart';
 import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 /// Widget to show the current list of typing users
 class CustomTypingIndicator extends StatelessWidget {
-  const CustomTypingIndicator({this.alternativeWidget, super.key});
+  const CustomTypingIndicator({
+    required this.channel,
+    this.alternativeWidget,
+    super.key,
+  });
 
   /// Widget built when no typings is happening
   final Widget? alternativeWidget;
+  final Channel channel;
 
   @override
   Widget build(BuildContext context) {
-    final channelState = context.channel.state!;
+    final channelState = channel.state!;
     final altWidget = alternativeWidget ?? const SizedBox.shrink();
     return BetterStreamBuilder(
       initialData: channelState.typingEvents.keys, // Iterable<User>  [Alice]

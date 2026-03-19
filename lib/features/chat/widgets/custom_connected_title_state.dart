@@ -6,13 +6,18 @@ import 'package:jiffy/jiffy.dart';
 import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 class CustomConnectedTitleState extends StatelessWidget {
-  const CustomConnectedTitleState({this.members, super.key});
+  const CustomConnectedTitleState({
+    required this.channel,
+    this.members,
+    super.key,
+  });
+
+  final Channel channel;
   final List<Member>? members;
 
   @override
   Widget build(BuildContext context) {
     Widget? alternativeWidget;
-    final channel = context.channel;
     final memberCount = channel.memberCount;
     if (memberCount != null && memberCount > 2) {
       var text = 'Members: $memberCount';
@@ -48,6 +53,9 @@ class CustomConnectedTitleState extends StatelessWidget {
       }
     }
 
-    return CustomTypingIndicator(alternativeWidget: alternativeWidget);
+    return CustomTypingIndicator(
+      channel: channel,
+      alternativeWidget: alternativeWidget,
+    );
   }
 }
