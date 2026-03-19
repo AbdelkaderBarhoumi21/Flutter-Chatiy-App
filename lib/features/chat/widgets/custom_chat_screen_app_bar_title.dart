@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chatiy_app/core/extension/app_user_extension.dart';
+import 'package:flutter_chatiy_app/core/extension/app_get_stream_extension.dart';
 import 'package:flutter_chatiy_app/core/utils/helpers/app_helpers.dart';
 import 'package:flutter_chatiy_app/core/widgets/avatar/avatar.dart';
 import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';

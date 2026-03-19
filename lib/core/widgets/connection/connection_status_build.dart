@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chatiy_app/core/extension/app_user_extension.dart';
+import 'package:flutter_chatiy_app/core/extension/app_get_stream_extension.dart';
 import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 /// Widget that builds itself based on the latest snapshot of interaction with

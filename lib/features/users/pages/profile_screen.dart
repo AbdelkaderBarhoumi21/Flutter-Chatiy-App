@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chatiy_app/core/extension/app_user_extension.dart';
+import 'package:flutter_chatiy_app/core/extension/app_get_stream_extension.dart';
 import 'package:flutter_chatiy_app/core/widgets/avatar/avatar.dart';
 import 'package:flutter_chatiy_app/features/users/widgets/signout_button.dart';
 
