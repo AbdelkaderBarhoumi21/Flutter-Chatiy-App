@@ -54,6 +54,7 @@ class _CustomChatScreenActionBarState extends State<CustomChatScreenActionBar> {
           child: Padding(
             padding: const EdgeInsets.only(left: 16.0),
             child: TextField(
+              controller: controller,
               style: const TextStyle(fontSize: 14),
               onChanged: (val) {
                 // Sends the [Event.typingStart]
