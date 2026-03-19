@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chatiy_app/core/extension/app_route_extension.dart';
@@ -8,9 +10,36 @@ import 'package:flutter_chatiy_app/features/chat/widgets/custom_chat_screen_app_
 import 'package:flutter_chatiy_app/features/chat/widgets/custom_message_list.dart';
 import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
-class ChatScreen extends StatelessWidget {
+class ChatScreen extends StatefulWidget {
   const ChatScreen({required this.channel, super.key});
   final Channel channel;
+
+  @override
+  State<ChatScreen> createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
+  late StreamSubscription<int> unreadCountSubscription;
+
+  Future<void> _unreadCountHandler(int count) async {
+    if (count > 0) {
+      await StreamChannel.of(context).channel.markRead();
+    }
+  }
+
+  @override
+  void initState() {
+    unreadCountSubscription = StreamChannel.of(
+      context,
+    ).channel.state!.unreadCountStream.listen(_unreadCountHandler);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    unreadCountSubscription.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -27,7 +56,7 @@ class ChatScreen extends StatelessWidget {
           onTap: () => context.pop(),
         ),
       ),
-      title: CustomChatScreenAppBarTitle(channel: channel),
+      title: CustomChatScreenAppBarTitle(channel: widget.channel),
       actions: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
