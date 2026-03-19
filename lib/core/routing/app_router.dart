@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chatiy_app/core/routing/app_route_names.dart';
-import 'package:flutter_chatiy_app/features/chat/pages/chat_screen.dart';
-import 'package:flutter_chatiy_app/features/home/pages/home_screen.dart';
-import 'package:flutter_chatiy_app/features/users/pages/profile_screen.dart';
-import 'package:flutter_chatiy_app/features/users/pages/select_user_screen.dart';
+import 'package:flutter_chatiy_app/views/chat/pages/chat_screen.dart';
+import 'package:flutter_chatiy_app/views/home/pages/home_screen.dart';
+import 'package:flutter_chatiy_app/views/users/pages/profile_screen.dart';
+import 'package:flutter_chatiy_app/views/users/pages/select_user_screen.dart';
 import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 /// [MaterialPageRoute] is a Flutter class that creates a route with Material
