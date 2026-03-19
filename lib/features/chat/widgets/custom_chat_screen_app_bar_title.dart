@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chatiy_app/core/extension/app_get_stream_extension.dart';
 import 'package:flutter_chatiy_app/core/utils/helpers/app_helpers.dart';
 import 'package:flutter_chatiy_app/core/widgets/avatar/avatar.dart';
+import 'package:flutter_chatiy_app/core/widgets/connection/connection_status_build.dart';
+import 'package:flutter_chatiy_app/features/chat/widgets/custom_connected_title_state.dart';
 import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 class CustomChatScreenAppBarTitle extends StatelessWidget {
@@ -27,12 +29,35 @@ class CustomChatScreenAppBarTitle extends StatelessWidget {
               style: const TextStyle(fontSize: 14),
             ),
             const SizedBox(height: 2),
-            const Text(
-              'Online now',
-              style: TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.bold,
-                color: Colors.green,
+
+            BetterStreamBuilder<List<Member>>(
+              stream: channel.state!.membersStream,
+              initialData: channel.state!.members,
+              builder: (context, data) => ConnectionStatusBuilder(
+                statusBuilder: (context, status) {
+                  switch (status) {
+                    case ConnectionStatus.connected:
+                      return CustomConnectedTitleState(members: data);
+                    case ConnectionStatus.connecting:
+                      return const Text(
+                        'Connecting',
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green,
+                        ),
+                      );
+                    case ConnectionStatus.disconnected:
+                      return const Text(
+                        'Offline',
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red,
+                        ),
+                      );
+                  }
+                },
               ),
             ),
           ],
