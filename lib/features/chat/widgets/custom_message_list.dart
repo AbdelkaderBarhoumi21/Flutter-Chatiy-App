@@ -23,7 +23,7 @@ class CustomMessageList extends StatelessWidget {
           return const SizedBox.shrink();
         } else if (index >= messages.length - 1) {
           return const SizedBox.shrink();
-        } else if (index < messages.length - 1) {
+        } else if (index <= messages.length - 1) {
           final message = messages[index];
           final nextMessage = messages[index + 1];
           if (!Jiffy.parseFromDateTime(message.createdAt.toLocal()).isSame(
@@ -44,10 +44,7 @@ class CustomMessageList extends StatelessWidget {
           if (message.user?.id == context.currentUser?.id) {
             return CustomChatScreenMessageOwnTile(message: message);
           } else {
-            return CustomChatScreenMessageTile(
-              message: message,
-       
-            );
+            return CustomChatScreenMessageTile(message: message);
           }
         } else {
           return const SizedBox.shrink();

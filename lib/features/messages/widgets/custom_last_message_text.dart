@@ -7,15 +7,25 @@ class CustomLastMessageText extends StatelessWidget {
   final Channel channel;
 
   @override
-  Widget build(BuildContext context) => BetterStreamBuilder<Message>(
-    stream: channel.state!.lastMessageStream,
-    initialData: channel.state!.lastMessage,
-    builder: (context, lastMessage) => Text(
-      lastMessage.text ?? '',
-      style: const TextStyle(
-        overflow: TextOverflow.ellipsis,
-        fontSize: 12,
-        color: AppColors.textFaded,
+  Widget build(BuildContext context) => BetterStreamBuilder<int>(
+    stream: channel.state!.unreadCountStream,
+    initialData: channel.state!.unreadCount,
+    builder: (context, count) => BetterStreamBuilder<Message>(
+      stream: channel.state!.lastMessageStream,
+      initialData: channel.state!.lastMessage,
+      builder: (context, lastMessage) => Text(
+        lastMessage.text ?? '',
+        style: count > 0
+            ? const TextStyle(
+                overflow: TextOverflow.ellipsis,
+                fontSize: 12,
+                color: AppColors.secondary,
+              )
+            : const TextStyle(
+                overflow: TextOverflow.ellipsis,
+                fontSize: 12,
+                color: AppColors.textFaded,
+              ),
       ),
     ),
   );

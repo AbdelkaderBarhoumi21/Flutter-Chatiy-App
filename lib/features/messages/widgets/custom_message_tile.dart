@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chatiy_app/core/extension/app_route_extension.dart';
 import 'package:flutter_chatiy_app/core/extension/app_get_stream_extension.dart';
+import 'package:flutter_chatiy_app/core/extension/app_route_extension.dart';
 import 'package:flutter_chatiy_app/core/routing/app_route_names.dart';
-import 'package:flutter_chatiy_app/core/utils/constans/app_colors.dart';
 import 'package:flutter_chatiy_app/core/utils/helpers/app_helpers.dart';
 import 'package:flutter_chatiy_app/core/widgets/avatar/avatar.dart';
 import 'package:flutter_chatiy_app/features/messages/widgets/custom_last_message_date.dart';
 import 'package:flutter_chatiy_app/features/messages/widgets/custom_last_message_text.dart';
+import 'package:flutter_chatiy_app/features/messages/widgets/custom_unread_indicator.dart';
 import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 class CustomMessageTile extends StatelessWidget {
@@ -51,19 +51,9 @@ class CustomMessageTile extends StatelessWidget {
             children: [
               CustomLastMessageDate(channel: channel),
               const SizedBox(height: 8),
-              Container(
-                width: 18,
-                height: 18,
-                alignment: Alignment.center,
-                decoration: const BoxDecoration(
-                  color: AppColors.secondary,
-                  shape: BoxShape.circle,
-                ),
-                child: const Text(
-                  '1',
-                  style: TextStyle(fontSize: 10, color: AppColors.textLight),
-                ),
-              ),
+
+              Center(child: CustomUnreadIndicator(channel: channel)),
+      
             ],
           ),
         ],
